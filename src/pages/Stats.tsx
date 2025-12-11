@@ -142,7 +142,7 @@ export default function Stats() {
         <main className="container mx-auto px-4 py-8">
           <PageHeader
             title="Statistics"
-            subtitle="Explore fascinating data about The Simpsons universe"
+            subtitle="Dive into fascinating data and analytics from The Simpsons universe"
             icon="📊"
           />
 
@@ -151,14 +151,20 @@ export default function Stats() {
             {statCards.map((stat, index) => (
               <div
                 key={stat.title}
-                className="bg-card rounded-2xl p-6 border-2 border-border shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-bounce-in"
+                className="group relative bg-card/80 backdrop-blur-sm rounded-3xl p-6 border-2 border-border shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 animate-bounce-in overflow-hidden"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
+                {/* Gradient overlay on hover */}
                 <div className={cn(
-                  "w-12 h-12 rounded-xl flex items-center justify-center mb-4",
+                  "absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500",
+                  stat.color
+                )} />
+                
+                <div className={cn(
+                  "w-14 h-14 rounded-2xl flex items-center justify-center mb-4 shadow-lg",
                   stat.color
                 )}>
-                  <stat.icon className="w-6 h-6 text-primary-foreground" />
+                  <stat.icon className="w-7 h-7 text-primary-foreground" />
                 </div>
                 <p className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-1">
                   {stats.loading ? (
@@ -174,9 +180,14 @@ export default function Stats() {
           </div>
 
           {/* Episodes per Season Chart */}
-          <div className="bg-card rounded-3xl p-6 md:p-8 border-2 border-border shadow-lg mb-12">
-            <div className="flex items-center gap-3 mb-6">
-              <BarChart3 className="w-6 h-6 text-secondary" />
+          <div className="bg-card/80 backdrop-blur-sm rounded-3xl p-6 md:p-8 border-2 border-border shadow-xl mb-12 relative overflow-hidden">
+            {/* Background decoration */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-secondary/10 to-transparent rounded-full blur-3xl" />
+            
+            <div className="flex items-center gap-3 mb-6 relative z-10">
+              <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center shadow-lg">
+                <BarChart3 className="w-5 h-5 text-secondary-foreground" />
+              </div>
               <h2 className="text-2xl font-heading font-bold text-foreground">Episodes per Season</h2>
             </div>
             
@@ -214,36 +225,46 @@ export default function Stats() {
           </div>
 
           {/* Your Stats */}
-          <div className="bg-gradient-to-r from-accent/20 to-primary/20 rounded-3xl p-6 md:p-8 border-2 border-accent/30 mb-12">
-            <div className="flex items-center gap-3 mb-6">
-              <Star className="w-6 h-6 text-accent" />
-              <h2 className="text-2xl font-heading font-bold text-foreground">Your Activity</h2>
-            </div>
+          <div className="relative rounded-3xl p-6 md:p-8 border-2 border-accent/30 mb-12 overflow-hidden">
+            {/* Animated gradient background */}
+            <div className="absolute inset-0 bg-gradient-to-r from-accent/20 via-primary/10 to-secondary/20 animate-gradient" />
+            <div className="absolute inset-0 backdrop-blur-sm" />
             
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="bg-card/80 backdrop-blur rounded-xl p-4 text-center">
-                <p className="text-3xl font-heading font-bold text-accent">{favorites.length}</p>
-                <p className="text-sm text-muted-foreground font-body">Total Favorites</p>
+            <div className="relative z-10">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-xl bg-accent flex items-center justify-center shadow-lg">
+                  <Star className="w-5 h-5 text-accent-foreground" />
+                </div>
+                <h2 className="text-2xl font-heading font-bold text-foreground">Your Activity</h2>
               </div>
-              <div className="bg-card/80 backdrop-blur rounded-xl p-4 text-center">
-                <p className="text-3xl font-heading font-bold text-primary">{getFavoritesByType("character").length}</p>
-                <p className="text-sm text-muted-foreground font-body">Fav Characters</p>
-              </div>
-              <div className="bg-card/80 backdrop-blur rounded-xl p-4 text-center">
-                <p className="text-3xl font-heading font-bold text-secondary">{getFavoritesByType("episode").length}</p>
-                <p className="text-sm text-muted-foreground font-body">Fav Episodes</p>
-              </div>
-              <div className="bg-card/80 backdrop-blur rounded-xl p-4 text-center">
-                <p className="text-3xl font-heading font-bold text-simpsons-orange">{getFavoritesByType("location").length}</p>
-                <p className="text-sm text-muted-foreground font-body">Fav Locations</p>
+              
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="bg-card/90 backdrop-blur rounded-2xl p-5 text-center shadow-lg hover:shadow-xl transition-shadow">
+                  <p className="text-3xl font-heading font-bold text-accent">{favorites.length}</p>
+                  <p className="text-sm text-muted-foreground font-body">Total Favorites</p>
+                </div>
+                <div className="bg-card/90 backdrop-blur rounded-2xl p-5 text-center shadow-lg hover:shadow-xl transition-shadow">
+                  <p className="text-3xl font-heading font-bold text-primary">{getFavoritesByType("character").length}</p>
+                  <p className="text-sm text-muted-foreground font-body">Fav Characters</p>
+                </div>
+                <div className="bg-card/90 backdrop-blur rounded-2xl p-5 text-center shadow-lg hover:shadow-xl transition-shadow">
+                  <p className="text-3xl font-heading font-bold text-secondary">{getFavoritesByType("episode").length}</p>
+                  <p className="text-sm text-muted-foreground font-body">Fav Episodes</p>
+                </div>
+                <div className="bg-card/90 backdrop-blur rounded-2xl p-5 text-center shadow-lg hover:shadow-xl transition-shadow">
+                  <p className="text-3xl font-heading font-bold text-simpsons-orange">{getFavoritesByType("location").length}</p>
+                  <p className="text-sm text-muted-foreground font-body">Fav Locations</p>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Fun Facts Grid */}
-          <div className="mb-8">
+          <div className="mb-12">
             <div className="flex items-center gap-3 mb-6">
-              <TrendingUp className="w-6 h-6 text-primary" />
+              <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-lg">
+                <TrendingUp className="w-5 h-5 text-primary-foreground" />
+              </div>
               <h2 className="text-2xl font-heading font-bold text-foreground">Fun Facts</h2>
             </div>
             
@@ -251,10 +272,11 @@ export default function Stats() {
               {funFacts.map((fact, index) => (
                 <div
                   key={fact.title}
-                  className="bg-card rounded-2xl p-5 border-2 border-border shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 animate-bounce-in"
+                  className="group bg-card/80 backdrop-blur-sm rounded-2xl p-5 border-2 border-border shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2 animate-bounce-in relative overflow-hidden"
                   style={{ animationDelay: `${index * 100 + 400}ms` }}
                 >
-                  <span className="text-3xl mb-3 block">{fact.icon}</span>
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <span className="text-4xl mb-3 block group-hover:scale-110 transition-transform duration-300">{fact.icon}</span>
                   <p className="text-xs text-muted-foreground font-body uppercase tracking-wide">{fact.title}</p>
                   <p className="text-xl font-heading font-bold text-foreground">{fact.value}</p>
                   <p className="text-sm text-muted-foreground font-body">{fact.description}</p>
@@ -264,13 +286,18 @@ export default function Stats() {
           </div>
 
           {/* Timeline */}
-          <div className="bg-card rounded-3xl p-6 md:p-8 border-2 border-border shadow-lg">
-            <div className="flex items-center gap-3 mb-6">
-              <Clock className="w-6 h-6 text-simpsons-orange" />
+          <div className="bg-card/80 backdrop-blur-sm rounded-3xl p-6 md:p-8 border-2 border-border shadow-xl relative overflow-hidden">
+            {/* Background decoration */}
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-simpsons-orange/10 to-transparent rounded-full blur-3xl" />
+            
+            <div className="flex items-center gap-3 mb-6 relative z-10">
+              <div className="w-10 h-10 rounded-xl bg-simpsons-orange flex items-center justify-center shadow-lg">
+                <Clock className="w-5 h-5 text-white" />
+              </div>
               <h2 className="text-2xl font-heading font-bold text-foreground">Simpsons Timeline</h2>
             </div>
             
-            <div className="space-y-4">
+            <div className="space-y-4 relative z-10">
               {[
                 { year: "1987", event: "First appearance on The Tracey Ullman Show", emoji: "🎬" },
                 { year: "1989", event: "The Simpsons premieres as a series", emoji: "📺" },
@@ -282,13 +309,13 @@ export default function Stats() {
               ].map((item, index) => (
                 <div
                   key={item.year}
-                  className="flex items-center gap-4 p-4 bg-muted/50 rounded-xl hover:bg-muted transition-colors"
+                  className="group flex items-center gap-4 p-4 bg-muted/50 rounded-2xl hover:bg-muted/80 transition-all duration-300 hover:shadow-md"
                 >
-                  <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center shrink-0">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shrink-0 shadow-lg group-hover:scale-105 transition-transform">
                     <span className="text-2xl">{item.emoji}</span>
                   </div>
                   <div>
-                    <p className="font-heading font-bold text-primary">{item.year}</p>
+                    <p className="font-heading font-bold text-primary text-lg">{item.year}</p>
                     <p className="text-foreground font-body">{item.event}</p>
                   </div>
                 </div>

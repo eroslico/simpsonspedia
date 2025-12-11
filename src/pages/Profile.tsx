@@ -252,7 +252,7 @@ export default function Profile() {
         <main className="container mx-auto px-4 py-8">
           <PageHeader
             title="Your Profile"
-            subtitle="Track your progress and unlock achievements"
+            subtitle="Track your Springfield journey, unlock achievements, and become a true fan"
             icon="👤"
           />
 

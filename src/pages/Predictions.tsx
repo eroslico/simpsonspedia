@@ -189,27 +189,43 @@ export default function Predictions() {
         <main className="container mx-auto px-4 py-8">
           <PageHeader
             title="Simpsons Predictions"
-            subtitle="Explore the uncanny predictions The Simpsons got right"
+            subtitle="Explore the uncanny predictions The Simpsons made that actually came true"
             icon="🔮"
           />
 
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            <div className="bg-card rounded-2xl p-4 border-2 border-border shadow-md text-center">
+            <div className="group bg-card/80 backdrop-blur-sm rounded-3xl p-5 border-2 border-border shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 text-center relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="w-12 h-12 rounded-2xl bg-primary/20 flex items-center justify-center mx-auto mb-3">
+                <Sparkles className="w-6 h-6 text-primary" />
+              </div>
               <p className="text-3xl font-heading font-bold text-primary">{predictions.length}</p>
               <p className="text-sm text-muted-foreground font-body">Total Predictions</p>
             </div>
-            <div className="bg-card rounded-2xl p-4 border-2 border-border shadow-md text-center">
+            <div className="group bg-card/80 backdrop-blur-sm rounded-3xl p-5 border-2 border-border shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 text-center relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-simpsons-green/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="w-12 h-12 rounded-2xl bg-simpsons-green/20 flex items-center justify-center mx-auto mb-3">
+                <CheckCircle2 className="w-6 h-6 text-simpsons-green" />
+              </div>
               <p className="text-3xl font-heading font-bold text-simpsons-green">{confirmedCount}</p>
               <p className="text-sm text-muted-foreground font-body">Confirmed</p>
             </div>
-            <div className="bg-card rounded-2xl p-4 border-2 border-border shadow-md text-center">
+            <div className="group bg-card/80 backdrop-blur-sm rounded-3xl p-5 border-2 border-border shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 text-center relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-simpsons-orange/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="w-12 h-12 rounded-2xl bg-simpsons-orange/20 flex items-center justify-center mx-auto mb-3">
+                <Clock className="w-6 h-6 text-simpsons-orange" />
+              </div>
               <p className="text-3xl font-heading font-bold text-simpsons-orange">
                 {predictions.filter((p) => p.status === "pending").length}
               </p>
               <p className="text-sm text-muted-foreground font-body">Pending</p>
             </div>
-            <div className="bg-card rounded-2xl p-4 border-2 border-border shadow-md text-center">
+            <div className="group bg-card/80 backdrop-blur-sm rounded-3xl p-5 border-2 border-border shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 text-center relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="w-12 h-12 rounded-2xl bg-secondary/20 flex items-center justify-center mx-auto mb-3">
+                <Calendar className="w-6 h-6 text-secondary" />
+              </div>
               <p className="text-3xl font-heading font-bold text-secondary">35+</p>
               <p className="text-sm text-muted-foreground font-body">Years of Predictions</p>
             </div>
@@ -344,16 +360,21 @@ export default function Predictions() {
           </div>
 
           {/* Fun fact */}
-          <div className="mt-12 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-3xl p-6 text-center border-2 border-primary/30">
-            <span className="text-4xl mb-3 block">🔮</span>
-            <h3 className="text-xl font-heading font-bold text-foreground mb-2">
-              How do they do it?
-            </h3>
-            <p className="text-muted-foreground font-body max-w-2xl mx-auto">
-              The Simpsons writers are Harvard graduates and experts in various fields. 
-              Many "predictions" are actually educated extrapolations of current trends, 
-              combined with over 750 episodes covering virtually every topic imaginable!
-            </p>
+          <div className="mt-12 relative rounded-3xl p-8 text-center border-2 border-primary/30 overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-secondary/10 to-accent/20 animate-gradient" />
+            <div className="absolute inset-0 backdrop-blur-sm" />
+            
+            <div className="relative z-10">
+              <span className="text-5xl mb-4 block">🔮</span>
+              <h3 className="text-2xl font-heading font-bold text-foreground mb-3">
+                How do they do it?
+              </h3>
+              <p className="text-muted-foreground font-body max-w-2xl mx-auto text-lg">
+                The Simpsons writers are Harvard graduates and experts in various fields. 
+                Many "predictions" are actually educated extrapolations of current trends, 
+                combined with over 750 episodes covering virtually every topic imaginable!
+              </p>
+            </div>
           </div>
         </main>
       </PageTransition>

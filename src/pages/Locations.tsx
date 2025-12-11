@@ -118,7 +118,7 @@ export default function Locations() {
         <main className="container mx-auto px-4 py-8">
           <PageHeader
             title="Locations"
-            subtitle="Visit the most iconic places in Springfield"
+            subtitle="Explore the most iconic places in Springfield and beyond"
             icon="🗺️"
           />
 

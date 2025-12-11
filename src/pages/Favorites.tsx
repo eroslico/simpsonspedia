@@ -58,7 +58,7 @@ export default function Favorites() {
         <main className="container mx-auto px-4 py-8">
           <PageHeader
             title="My Favorites"
-            subtitle="Your saved characters, episodes, and locations"
+            subtitle="Your personal collection of beloved characters, episodes, and locations"
             icon="❤️"
           />
 
@@ -72,23 +72,35 @@ export default function Favorites() {
             <>
               {/* Statistics Section */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-                <div className="bg-card rounded-2xl p-4 border-2 border-border shadow-md text-center">
-                  <Heart className="w-8 h-8 text-accent mx-auto mb-2" />
+                <div className="group bg-card/80 backdrop-blur-sm rounded-3xl p-5 border-2 border-border shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 text-center relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="w-12 h-12 rounded-2xl bg-accent/20 flex items-center justify-center mx-auto mb-3">
+                    <Heart className="w-6 h-6 text-accent" />
+                  </div>
                   <p className="text-3xl font-heading font-bold text-foreground">{totalFavorites}</p>
                   <p className="text-sm text-muted-foreground font-body">Total Favorites</p>
                 </div>
-                <div className="bg-card rounded-2xl p-4 border-2 border-border shadow-md text-center">
-                  <Users className="w-8 h-8 text-primary mx-auto mb-2" />
+                <div className="group bg-card/80 backdrop-blur-sm rounded-3xl p-5 border-2 border-border shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 text-center relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="w-12 h-12 rounded-2xl bg-primary/20 flex items-center justify-center mx-auto mb-3">
+                    <Users className="w-6 h-6 text-primary" />
+                  </div>
                   <p className="text-3xl font-heading font-bold text-foreground">{characterFavorites.length}</p>
                   <p className="text-sm text-muted-foreground font-body">Characters</p>
                 </div>
-                <div className="bg-card rounded-2xl p-4 border-2 border-border shadow-md text-center">
-                  <Tv className="w-8 h-8 text-secondary mx-auto mb-2" />
+                <div className="group bg-card/80 backdrop-blur-sm rounded-3xl p-5 border-2 border-border shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 text-center relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="w-12 h-12 rounded-2xl bg-secondary/20 flex items-center justify-center mx-auto mb-3">
+                    <Tv className="w-6 h-6 text-secondary" />
+                  </div>
                   <p className="text-3xl font-heading font-bold text-foreground">{episodeFavorites.length}</p>
                   <p className="text-sm text-muted-foreground font-body">Episodes</p>
                 </div>
-                <div className="bg-card rounded-2xl p-4 border-2 border-border shadow-md text-center">
-                  <MapPin className="w-8 h-8 text-accent mx-auto mb-2" />
+                <div className="group bg-card/80 backdrop-blur-sm rounded-3xl p-5 border-2 border-border shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 text-center relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="w-12 h-12 rounded-2xl bg-accent/20 flex items-center justify-center mx-auto mb-3">
+                    <MapPin className="w-6 h-6 text-accent" />
+                  </div>
                   <p className="text-3xl font-heading font-bold text-foreground">{locationFavorites.length}</p>
                   <p className="text-sm text-muted-foreground font-body">Locations</p>
                 </div>
@@ -96,29 +108,36 @@ export default function Favorites() {
 
               {/* Most Recent */}
               {mostRecentFavorite && (
-                <div className="mb-12 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl p-6 border border-border">
-                  <div className="flex items-center gap-2 mb-3">
-                    <TrendingUp className="w-5 h-5 text-primary" />
-                    <h3 className="font-heading font-bold text-foreground">Most Recently Added</h3>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 rounded-xl overflow-hidden bg-muted shrink-0">
-                      {mostRecentFavorite.image ? (
-                        <img
-                          src={mostRecentFavorite.image}
-                          alt={mostRecentFavorite.name}
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center text-2xl">
-                          {mostRecentFavorite.type === "character" ? "👥" : 
-                           mostRecentFavorite.type === "episode" ? "📺" : "🗺️"}
-                        </div>
-                      )}
+                <div className="mb-12 relative rounded-3xl p-6 border-2 border-primary/30 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-secondary/5 to-accent/10" />
+                  <div className="absolute inset-0 backdrop-blur-sm" />
+                  
+                  <div className="relative z-10">
+                    <div className="flex items-center gap-2 mb-4">
+                      <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
+                        <TrendingUp className="w-4 h-4 text-primary-foreground" />
+                      </div>
+                      <h3 className="font-heading font-bold text-foreground">Most Recently Added</h3>
                     </div>
-                    <div>
-                      <p className="font-heading font-bold text-lg text-foreground">{mostRecentFavorite.name}</p>
-                      <p className="text-sm text-muted-foreground capitalize">{mostRecentFavorite.type}</p>
+                    <div className="flex items-center gap-4">
+                      <div className="w-20 h-20 rounded-2xl overflow-hidden bg-muted shrink-0 shadow-lg border-2 border-border">
+                        {mostRecentFavorite.image ? (
+                          <img
+                            src={mostRecentFavorite.image}
+                            alt={mostRecentFavorite.name}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center text-3xl bg-gradient-to-br from-primary/20 to-secondary/20">
+                            {mostRecentFavorite.type === "character" ? "👥" : 
+                             mostRecentFavorite.type === "episode" ? "📺" : "🗺️"}
+                          </div>
+                        )}
+                      </div>
+                      <div>
+                        <p className="font-heading font-bold text-xl text-foreground">{mostRecentFavorite.name}</p>
+                        <p className="text-sm text-muted-foreground capitalize font-body">{mostRecentFavorite.type}</p>
+                      </div>
                     </div>
                   </div>
                 </div>

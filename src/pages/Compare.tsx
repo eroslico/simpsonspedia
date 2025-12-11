@@ -98,7 +98,7 @@ export default function Compare() {
         <main className="container mx-auto px-4 py-8">
           <PageHeader
             title="Character Comparator"
-            subtitle="Compare your favorite Springfield residents side by side"
+            subtitle="Put your favorite Springfield residents head-to-head and discover their differences"
             icon="⚖️"
           />
 
@@ -118,23 +118,31 @@ export default function Compare() {
             {[0, 1].map((slot) => (
               <div key={slot} className="relative">
                 {selectedCharacters[slot] ? (
-                  <div className="bg-card rounded-3xl p-6 border-4 border-primary shadow-xl animate-bounce-in">
+                  <div className="bg-card/80 backdrop-blur-sm rounded-3xl p-6 border-4 border-primary shadow-2xl animate-bounce-in relative overflow-hidden">
+                    {/* Background decoration */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5" />
+                    
                     <button
                       onClick={() => removeCharacter(slot)}
-                      className="absolute top-4 right-4 p-2 bg-destructive/10 hover:bg-destructive/20 rounded-full transition-colors"
+                      className="absolute top-4 right-4 p-2 bg-destructive/10 hover:bg-destructive/20 rounded-full transition-colors z-10"
                     >
                       <X className="w-4 h-4 text-destructive" />
                     </button>
                     
-                    <div className="flex flex-col items-center">
-                      <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-primary shadow-lg mb-4">
-                        <img
-                          src={`https://cdn.thesimpsonsapi.com/500${selectedCharacters[slot]!.portrait_path}`}
-                          alt={selectedCharacters[slot]!.name}
-                          className="w-full h-full object-cover"
-                        />
+                    <div className="flex flex-col items-center relative z-10">
+                      <div className="relative">
+                        <div className="w-36 h-36 rounded-full overflow-hidden border-4 border-primary shadow-xl mb-4">
+                          <img
+                            src={`https://cdn.thesimpsonsapi.com/500${selectedCharacters[slot]!.portrait_path}`}
+                            alt={selectedCharacters[slot]!.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-primary-foreground rounded-full text-xs font-heading shadow-lg">
+                          #{slot + 1}
+                        </div>
                       </div>
-                      <h3 className="text-xl font-heading font-bold text-foreground mb-2">
+                      <h3 className="text-xl font-heading font-bold text-foreground mb-2 mt-2">
                         {selectedCharacters[slot]!.name}
                       </h3>
                       <CharacterTags characterName={selectedCharacters[slot]!.name} />
@@ -143,12 +151,12 @@ export default function Compare() {
                 ) : (
                   <div
                     onClick={() => setShowSearch(slot)}
-                    className="bg-card rounded-3xl p-6 border-4 border-dashed border-border hover:border-primary cursor-pointer transition-colors min-h-[280px] flex flex-col items-center justify-center gap-4"
+                    className="group bg-card/80 backdrop-blur-sm rounded-3xl p-6 border-4 border-dashed border-border hover:border-primary cursor-pointer transition-all duration-300 min-h-[280px] flex flex-col items-center justify-center gap-4 hover:shadow-xl"
                   >
-                    <div className="w-20 h-20 rounded-full bg-muted flex items-center justify-center">
-                      <Plus className="w-10 h-10 text-muted-foreground" />
+                    <div className="w-24 h-24 rounded-full bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <Plus className="w-12 h-12 text-muted-foreground group-hover:text-primary transition-colors" />
                     </div>
-                    <p className="text-muted-foreground font-heading">
+                    <p className="text-muted-foreground font-heading group-hover:text-foreground transition-colors">
                       Select Character {slot + 1}
                     </p>
                   </div>
@@ -208,8 +216,12 @@ export default function Compare() {
 
           {/* Comparison Table */}
           {selectedCharacters[0] && selectedCharacters[1] && (
-            <div className="bg-card rounded-3xl p-6 border-4 border-border shadow-xl animate-bounce-in">
-              <h2 className="text-2xl font-heading font-bold text-foreground mb-6 text-center">
+            <div className="bg-card/80 backdrop-blur-sm rounded-3xl p-6 border-4 border-border shadow-2xl animate-bounce-in relative overflow-hidden">
+              {/* Background decoration */}
+              <div className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-3xl" />
+              <div className="absolute bottom-0 right-0 w-64 h-64 bg-gradient-to-tl from-secondary/10 to-transparent rounded-full blur-3xl" />
+              
+              <h2 className="text-2xl font-heading font-bold text-foreground mb-6 text-center relative z-10">
                 📊 Comparison
               </h2>
               

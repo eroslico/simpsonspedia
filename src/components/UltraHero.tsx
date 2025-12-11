@@ -229,7 +229,7 @@ export function UltraHero() {
           {[
             { value: "100+", label: "Characters", emoji: "👥" },
             { value: "750+", label: "Episodes", emoji: "📺" },
-            { value: "10+", label: "Games", emoji: "🎮" },
+            { value: "35+", label: "Seasons", emoji: "📅" },
           ].map((stat, i) => (
             <div
               key={i}

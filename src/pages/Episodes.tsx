@@ -167,7 +167,7 @@ export default function Episodes() {
         <main className="container mx-auto px-4 py-8">
           <PageHeader
             title="Episodes"
-            subtitle="Explore all episodes of the longest-running TV series"
+            subtitle="Explore 750+ episodes across 35 seasons of television history"
             icon="📺"
           />
 

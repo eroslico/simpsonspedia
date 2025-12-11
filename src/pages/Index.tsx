@@ -3,44 +3,29 @@ import { Link } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { PageTransition } from "@/components/PageTransition";
 import { ScrollToTop } from "@/components/ScrollToTop";
-import { RandomButton } from "@/components/RandomButton";
 import { OnThisDay } from "@/components/OnThisDay";
-import { DonutEasterEgg } from "@/components/EasterEgg";
 import { SkipLink } from "@/components/SkipLink";
 import { CharacterOfTheDay, RandomEpisodeWidget, QuickStatsWidget } from "@/components/HomepageWidgets";
 import { UltraHero } from "@/components/UltraHero";
 import { FeatureShowcase } from "@/components/FeatureShowcase";
 import { TestimonialSection } from "@/components/TestimonialSection";
 import { InteractiveFooter } from "@/components/InteractiveFooter";
-import { ScrollReveal, ScrollCounter, Parallax } from "@/components/ScrollAnimations";
+import { ScrollReveal, ScrollCounter } from "@/components/ScrollAnimations";
 import { GlassCard } from "@/components/GlassCard";
 import { CursorEffects, ClickRipple } from "@/components/CursorEffects";
 import { UltraLoadingScreen } from "@/components/UltraLoadingScreen";
-import { Users, Tv, MapPin, ArrowRight, Heart, BarChart3, Brain, ArrowLeftRight, Image, Calendar, User, Volume2, TreeDeciduous, Sparkles, Gamepad2, Zap, Trophy, Star } from "lucide-react";
+import { ArrowRight, Heart, Sparkles, Zap, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useFavorites } from "@/hooks/useFavorites";
 import { cn } from "@/lib/utils";
 
-const games = [
-  { name: "Wordle", emoji: "📝", path: "/wordle", color: "from-green-400 to-emerald-500" },
-  { name: "Who Said It", emoji: "🗣️", path: "/who-said-it", color: "from-blue-400 to-cyan-500" },
-  { name: "Bingo", emoji: "🎲", path: "/bingo", color: "from-yellow-400 to-orange-500" },
-  { name: "Guess", emoji: "🎬", path: "/guess", color: "from-purple-400 to-pink-500" },
-  { name: "Trivia", emoji: "🧠", path: "/trivia", color: "from-red-400 to-rose-500" },
-  { name: "Memory", emoji: "🎴", path: "/memory", color: "from-indigo-400 to-violet-500" },
-  { name: "Personality", emoji: "🪞", path: "/quiz", color: "from-amber-400 to-yellow-500" },
-  { name: "Memes", emoji: "🎨", path: "/memes", color: "from-pink-400 to-rose-500" },
-];
-
-const quickLinks = [
-  { name: "Map", emoji: "🗺️", path: "/map" },
-  { name: "Couch Gags", emoji: "🛋️", path: "/couch-gags" },
-  { name: "Compare", emoji: "⚖️", path: "/compare" },
-  { name: "Timeline", emoji: "📅", path: "/timeline" },
-  { name: "Predictions", emoji: "🔮", path: "/predictions" },
-  { name: "Family Tree", emoji: "🌳", path: "/family-tree" },
-  { name: "Soundboard", emoji: "🔊", path: "/soundboard" },
-  { name: "Profile", emoji: "👤", path: "/profile" },
+const features = [
+  { name: "Characters", emoji: "👨‍👩‍👧‍👦", path: "/characters", color: "from-yellow-400 to-orange-500" },
+  { name: "Episodes", emoji: "📺", path: "/episodes", color: "from-blue-400 to-cyan-500" },
+  { name: "Locations", emoji: "🗺️", path: "/locations", color: "from-purple-400 to-pink-500" },
+  { name: "Compare", emoji: "⚖️", path: "/compare", color: "from-green-400 to-emerald-500" },
+  { name: "Stats", emoji: "📊", path: "/stats", color: "from-red-400 to-rose-500" },
+  { name: "Predictions", emoji: "🔮", path: "/predictions", color: "from-indigo-400 to-violet-500" },
 ];
 
 export default function Index() {
@@ -136,37 +121,37 @@ export default function Index() {
             </ScrollReveal>
           </section>
 
-          {/* Games Grid */}
+          {/* Features Grid */}
           <section className="py-16 px-4 bg-gradient-to-b from-transparent via-muted/30 to-transparent">
             <div className="container mx-auto max-w-6xl">
               <ScrollReveal direction="up" className="text-center mb-12">
                 <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-heading mb-4">
-                  <Gamepad2 className="w-4 h-4" />
-                  Interactive Fun
+                  <Sparkles className="w-4 h-4" />
+                  Explore Springfield
                 </span>
                 <h2 className="text-4xl md:text-5xl font-heading font-bold">
-                  Games & <span className="text-primary">Activities</span>
+                  Discover <span className="text-primary">Everything</span>
                 </h2>
               </ScrollReveal>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-                {games.map((game, index) => (
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+                {features.map((feature, index) => (
                   <ScrollReveal
-                    key={game.path}
+                    key={feature.path}
                     direction={index % 2 === 0 ? "left" : "right"}
                     delay={index * 50}
                   >
-                    <Link to={game.path} className="block group">
+                    <Link to={feature.path} className="block group">
                       <GlassCard className="p-6 text-center h-full" hoverScale>
                         <div className={cn(
                           "absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-2xl",
-                          `bg-gradient-to-br ${game.color}`
+                          `bg-gradient-to-br ${feature.color}`
                         )} />
                         <span className="text-4xl md:text-5xl block mb-3 group-hover:scale-125 transition-transform duration-300">
-                          {game.emoji}
+                          {feature.emoji}
                         </span>
                         <h3 className="font-heading font-bold text-foreground group-hover:text-primary transition-colors">
-                          {game.name}
+                          {feature.name}
                         </h3>
                       </GlassCard>
                     </Link>
@@ -218,9 +203,9 @@ export default function Index() {
                       </div>
                       <div className="text-center p-4 rounded-xl bg-secondary/10">
                         <div className="text-3xl font-heading font-bold text-secondary">
-                          <ScrollCounter end={10} suffix="+" />
+                          <ScrollCounter end={35} suffix="+" />
                         </div>
-                        <div className="text-sm text-muted-foreground">Games</div>
+                        <div className="text-sm text-muted-foreground">Seasons</div>
                       </div>
                       <div className="text-center p-4 rounded-xl bg-accent/10">
                         <div className="text-3xl font-heading font-bold text-accent">
@@ -249,38 +234,6 @@ export default function Index() {
             </div>
           </section>
 
-          {/* Quick Links */}
-          <section className="py-12 px-4">
-            <div className="container mx-auto max-w-5xl">
-              <ScrollReveal direction="up" className="text-center mb-8">
-                <h2 className="text-2xl font-heading font-bold">
-                  More to <span className="text-accent">Explore</span> 🎉
-                </h2>
-              </ScrollReveal>
-
-              <div className="grid grid-cols-4 md:grid-cols-8 gap-3">
-                {quickLinks.map((link, index) => (
-                  <ScrollReveal key={link.path} direction="scale" delay={index * 30}>
-                    <Link
-                      to={link.path}
-                      className="block group"
-                      data-cursor
-                      data-cursor-text={link.name}
-                    >
-                      <div className="bg-card rounded-2xl p-3 md:p-4 border-2 border-border shadow-md hover:shadow-lg hover:border-primary transition-all text-center group-hover:-translate-y-1">
-                        <span className="text-2xl md:text-3xl block mb-1 group-hover:scale-110 transition-transform">
-                          {link.emoji}
-                        </span>
-                        <span className="text-xs font-heading text-muted-foreground group-hover:text-foreground transition-colors hidden md:block">
-                          {link.name}
-                        </span>
-                      </div>
-                    </Link>
-                  </ScrollReveal>
-                ))}
-              </div>
-            </div>
-          </section>
 
           {/* Testimonials */}
           <TestimonialSection />

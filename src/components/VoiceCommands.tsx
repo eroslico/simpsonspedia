@@ -33,16 +33,6 @@ export function VoiceCommands() {
       feedback: "Opening episodes",
     },
     {
-      phrases: ["play trivia", "start trivia", "trivia game"],
-      action: () => navigate("/trivia"),
-      feedback: "Starting trivia game",
-    },
-    {
-      phrases: ["play wordle", "start wordle", "wordle"],
-      action: () => navigate("/wordle"),
-      feedback: "Starting Wordle",
-    },
-    {
       phrases: ["dark mode", "toggle dark", "night mode"],
       action: () => {
         document.documentElement.classList.toggle("dark");
@@ -171,7 +161,7 @@ export function VoiceCommands() {
             )}
             
             <p className="text-sm text-muted-foreground font-body">
-              Try saying: "Go to characters" or "Play trivia"
+              Try saying: "Go to characters" or "Show favorites"
             </p>
 
             <div className="flex justify-center gap-1 mt-4">
@@ -200,10 +190,10 @@ export function VoiceCommandsHelp() {
   const commands = [
     { phrase: "Go home", description: "Navigate to homepage" },
     { phrase: "Show characters", description: "Open characters page" },
-    { phrase: "Play trivia", description: "Start trivia game" },
-    { phrase: "Play wordle", description: "Start Wordle game" },
+    { phrase: "Show episodes", description: "Open episodes page" },
     { phrase: "Dark mode", description: "Toggle dark theme" },
     { phrase: "Show favorites", description: "Open favorites" },
+    { phrase: "Daily challenge", description: "Open daily challenge" },
   ];
 
   return (

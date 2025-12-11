@@ -167,7 +167,7 @@ export default function Characters() {
         <main className="container mx-auto px-4 py-8">
           <PageHeader
             title="Characters"
-            subtitle="Discover all the characters from The Simpsons universe"
+            subtitle="Discover all the iconic residents of Springfield and beyond"
             icon="👥"
           />
 

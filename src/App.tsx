@@ -18,24 +18,10 @@ import Episodes from "./pages/Episodes";
 import Locations from "./pages/Locations";
 import Favorites from "./pages/Favorites";
 import Stats from "./pages/Stats";
-import Trivia from "./pages/Trivia";
 import Compare from "./pages/Compare";
-import MemeGenerator from "./pages/MemeGenerator";
-import Timeline from "./pages/Timeline";
 import Profile from "./pages/Profile";
 import Predictions from "./pages/Predictions";
-import FamilyTree from "./pages/FamilyTree";
-import Soundboard from "./pages/Soundboard";
-import Quiz from "./pages/Quiz";
-import MemoryGame from "./pages/MemoryGame";
-import Bingo from "./pages/Bingo";
-import QuoteGenerator from "./pages/QuoteGenerator";
-import GuessEpisode from "./pages/GuessEpisode";
-import SpringfieldMap from "./pages/SpringfieldMap";
-import CouchGags from "./pages/CouchGags";
-import WhoSaidIt from "./pages/WhoSaidIt";
 import DailyChallenge from "./pages/DailyChallenge";
-import Wordle from "./pages/Wordle";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -60,24 +46,10 @@ const App = () => {
                 <Route path="/locations" element={<Locations />} />
                 <Route path="/favorites" element={<Favorites />} />
                 <Route path="/stats" element={<Stats />} />
-                <Route path="/trivia" element={<Trivia />} />
                 <Route path="/compare" element={<Compare />} />
-                <Route path="/memes" element={<MemeGenerator />} />
-                <Route path="/timeline" element={<Timeline />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/predictions" element={<Predictions />} />
-                <Route path="/family-tree" element={<FamilyTree />} />
-                <Route path="/soundboard" element={<Soundboard />} />
-                <Route path="/quiz" element={<Quiz />} />
-                <Route path="/memory" element={<MemoryGame />} />
-                <Route path="/bingo" element={<Bingo />} />
-                <Route path="/quotes" element={<QuoteGenerator />} />
-                <Route path="/guess" element={<GuessEpisode />} />
-                <Route path="/map" element={<SpringfieldMap />} />
-                <Route path="/couch-gags" element={<CouchGags />} />
-                <Route path="/who-said-it" element={<WhoSaidIt />} />
                 <Route path="/daily" element={<DailyChallenge />} />
-                <Route path="/wordle" element={<Wordle />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
               <HomerChat />

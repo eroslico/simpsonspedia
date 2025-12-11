@@ -23,22 +23,8 @@ const navItems = [
 const moreItems = [
   { name: "Daily Challenge", path: "/daily", emoji: "🎯" },
   { name: "Stats", path: "/stats", emoji: "📊" },
-  { name: "Trivia", path: "/trivia", emoji: "🧠" },
-  { name: "Memory", path: "/memory", emoji: "🎴" },
-  { name: "Bingo", path: "/bingo", emoji: "🎲" },
-  { name: "Wordle", path: "/wordle", emoji: "📝" },
-  { name: "Who Said It", path: "/who-said-it", emoji: "🗣️" },
-  { name: "Guess Episode", path: "/guess", emoji: "🎬" },
-  { name: "Quiz", path: "/quiz", emoji: "🪞" },
   { name: "Compare", path: "/compare", emoji: "⚖️" },
-  { name: "Quotes", path: "/quotes", emoji: "💬" },
-  { name: "Memes", path: "/memes", emoji: "🎨" },
-  { name: "Map", path: "/map", emoji: "🗺️" },
-  { name: "Timeline", path: "/timeline", emoji: "📅" },
-  { name: "Couch Gags", path: "/couch-gags", emoji: "🛋️" },
   { name: "Predictions", path: "/predictions", emoji: "🔮" },
-  { name: "Family Tree", path: "/family-tree", emoji: "🌳" },
-  { name: "Soundboard", path: "/soundboard", emoji: "🔊" },
   { name: "Profile", path: "/profile", emoji: "👤" },
 ];
 

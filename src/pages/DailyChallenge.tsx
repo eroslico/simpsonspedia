@@ -22,49 +22,13 @@ interface Challenge {
   id: string;
   title: string;
   description: string;
-  type: "trivia" | "memory" | "guess" | "quote" | "explore";
+  type: "explore";
   target: number;
   reward: number;
   link: string;
 }
 
 const DAILY_CHALLENGES: Challenge[] = [
-  {
-    id: "trivia-3",
-    title: "Trivia Master",
-    description: "Get 3 correct answers in Trivia",
-    type: "trivia",
-    target: 3,
-    reward: 50,
-    link: "/trivia"
-  },
-  {
-    id: "memory-win",
-    title: "Memory Champion",
-    description: "Win a game of Memory",
-    type: "memory",
-    target: 1,
-    reward: 75,
-    link: "/memory"
-  },
-  {
-    id: "guess-2",
-    title: "Episode Expert",
-    description: "Guess 2 episodes correctly",
-    type: "guess",
-    target: 2,
-    reward: 100,
-    link: "/guess"
-  },
-  {
-    id: "quote-5",
-    title: "Quote Collector",
-    description: "Save 5 favorite quotes",
-    type: "quote",
-    target: 5,
-    reward: 30,
-    link: "/quotes"
-  },
   {
     id: "explore-chars",
     title: "Character Explorer",
@@ -73,6 +37,42 @@ const DAILY_CHALLENGES: Challenge[] = [
     target: 10,
     reward: 40,
     link: "/characters"
+  },
+  {
+    id: "explore-episodes",
+    title: "Episode Explorer",
+    description: "Browse through 15 episodes",
+    type: "explore",
+    target: 15,
+    reward: 50,
+    link: "/episodes"
+  },
+  {
+    id: "explore-locations",
+    title: "Location Scout",
+    description: "Explore 5 Springfield locations",
+    type: "explore",
+    target: 5,
+    reward: 35,
+    link: "/locations"
+  },
+  {
+    id: "add-favorites",
+    title: "Collector",
+    description: "Add 3 items to your favorites",
+    type: "explore",
+    target: 3,
+    reward: 45,
+    link: "/favorites"
+  },
+  {
+    id: "compare-chars",
+    title: "Comparison Expert",
+    description: "Compare 2 characters",
+    type: "explore",
+    target: 1,
+    reward: 30,
+    link: "/compare"
   }
 ];
 
@@ -152,27 +152,39 @@ export default function DailyChallenge() {
         <main className="container mx-auto px-4 py-8">
           <PageHeader
             title="Daily Challenge"
-            subtitle="Complete challenges to earn points and rewards!"
+            subtitle="Complete daily challenges to earn points, build your streak, and unlock exclusive rewards"
             icon="🎯"
           />
 
           {/* Stats */}
-          <div className="flex justify-center gap-6 mb-8">
-            <div className="text-center bg-card rounded-2xl p-4 border-2 border-border">
-              <Star className="w-8 h-8 text-primary mx-auto mb-1" />
+          <div className="flex justify-center gap-4 md:gap-6 mb-8 flex-wrap">
+            <div className="group text-center bg-card/80 backdrop-blur-sm rounded-3xl p-5 border-2 border-border shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="w-12 h-12 rounded-2xl bg-primary/20 flex items-center justify-center mx-auto mb-2">
+                <Star className="w-6 h-6 text-primary" />
+              </div>
               <p className="text-2xl font-heading font-bold text-foreground">{totalPoints}</p>
               <p className="text-sm text-muted-foreground">Total Points</p>
             </div>
-            <div className="text-center bg-card rounded-2xl p-4 border-2 border-border">
-              <Flame className={cn(
-                "w-8 h-8 mx-auto mb-1",
-                streak > 0 ? "text-simpsons-orange" : "text-muted-foreground"
-              )} />
+            <div className="group text-center bg-card/80 backdrop-blur-sm rounded-3xl p-5 border-2 border-border shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-simpsons-orange/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className={cn(
+                "w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-2",
+                streak > 0 ? "bg-simpsons-orange/20" : "bg-muted"
+              )}>
+                <Flame className={cn(
+                  "w-6 h-6",
+                  streak > 0 ? "text-simpsons-orange" : "text-muted-foreground"
+                )} />
+              </div>
               <p className="text-2xl font-heading font-bold text-foreground">{streak}</p>
               <p className="text-sm text-muted-foreground">Day Streak</p>
             </div>
-            <div className="text-center bg-card rounded-2xl p-4 border-2 border-border">
-              <Trophy className="w-8 h-8 text-secondary mx-auto mb-1" />
+            <div className="group text-center bg-card/80 backdrop-blur-sm rounded-3xl p-5 border-2 border-border shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="w-12 h-12 rounded-2xl bg-secondary/20 flex items-center justify-center mx-auto mb-2">
+                <Trophy className="w-6 h-6 text-secondary" />
+              </div>
               <p className="text-2xl font-heading font-bold text-foreground">Lvl {level}</p>
               <p className="text-sm text-muted-foreground">{pointsToNextLevel} to next</p>
             </div>
@@ -181,54 +193,58 @@ export default function DailyChallenge() {
           {/* Today's Challenge */}
           <div className="max-w-xl mx-auto mb-12">
             <h2 className="text-xl font-heading font-bold text-foreground mb-4 flex items-center gap-2">
-              <Calendar className="w-5 h-5 text-primary" />
+              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
+                <Calendar className="w-4 h-4 text-primary-foreground" />
+              </div>
               Today's Challenge
             </h2>
             
             <div className={cn(
-              "bg-card rounded-3xl p-6 border-4 shadow-xl transition-all",
+              "bg-card/80 backdrop-blur-sm rounded-3xl p-6 border-4 shadow-2xl transition-all relative overflow-hidden",
               isCompleted ? "border-simpsons-green" : "border-primary"
             )}>
+              {/* Background decoration */}
+              <div className={cn(
+                "absolute inset-0 opacity-10",
+                isCompleted ? "bg-gradient-to-br from-simpsons-green to-transparent" : "bg-gradient-to-br from-primary to-transparent"
+              )} />
               {isCompleted ? (
-                <div className="text-center">
-                  <CheckCircle className="w-16 h-16 text-simpsons-green mx-auto mb-4" />
+                <div className="text-center relative z-10">
+                  <div className="w-20 h-20 rounded-full bg-simpsons-green/20 flex items-center justify-center mx-auto mb-4">
+                    <CheckCircle className="w-12 h-12 text-simpsons-green" />
+                  </div>
                   <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
                     Challenge Completed! 🎉
                   </h3>
                   <p className="text-muted-foreground font-body mb-4">
                     Come back tomorrow for a new challenge!
                   </p>
-                  <p className="text-simpsons-green font-heading">
+                  <p className="text-simpsons-green font-heading text-lg">
                     +{dailyChallenge.reward} points earned
                   </p>
                 </div>
               ) : (
-                <>
+                <div className="relative z-10">
                   <div className="flex items-start justify-between mb-4">
                     <div>
-                      <span className="text-3xl mb-2 block">
-                        {dailyChallenge.type === "trivia" ? "🧠" :
-                         dailyChallenge.type === "memory" ? "🎴" :
-                         dailyChallenge.type === "guess" ? "🎬" :
-                         dailyChallenge.type === "quote" ? "💬" : "🔍"}
-                      </span>
+                      <span className="text-4xl mb-2 block">🔍</span>
                       <h3 className="text-xl font-heading font-bold text-foreground">
                         {dailyChallenge.title}
                       </h3>
                     </div>
-                    <div className="bg-primary/20 px-3 py-1 rounded-full">
-                      <span className="font-heading text-primary">+{dailyChallenge.reward} pts</span>
+                    <div className="bg-primary/20 px-4 py-2 rounded-full shadow-lg">
+                      <span className="font-heading text-primary font-bold">+{dailyChallenge.reward} pts</span>
                     </div>
                   </div>
                   
-                  <p className="text-muted-foreground font-body mb-6">
+                  <p className="text-muted-foreground font-body mb-6 text-lg">
                     {dailyChallenge.description}
                   </p>
                   
                   <div className="flex gap-3">
                     <Button
                       asChild
-                      className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90 font-heading rounded-full"
+                      className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90 font-heading rounded-full h-12 text-base shadow-lg hover:shadow-xl transition-all"
                     >
                       <Link to={dailyChallenge.link}>
                         Start Challenge
@@ -237,13 +253,13 @@ export default function DailyChallenge() {
                     <Button
                       onClick={completeChallenge}
                       variant="outline"
-                      className="font-heading rounded-full"
+                      className="font-heading rounded-full h-12 border-2"
                     >
                       <CheckCircle className="w-4 h-4 mr-2" />
                       Mark Done
                     </Button>
                   </div>
-                </>
+                </div>
               )}
             </div>
           </div>
@@ -281,11 +297,7 @@ export default function DailyChallenge() {
                     <div className="text-xl mb-1">
                       {completed ? "✅" :
                        isFuture ? <Lock className="w-5 h-5 mx-auto text-muted-foreground" /> :
-                       isPast ? "❌" :
-                       challenge.type === "trivia" ? "🧠" :
-                       challenge.type === "memory" ? "🎴" :
-                       challenge.type === "guess" ? "🎬" :
-                       challenge.type === "quote" ? "💬" : "🔍"}
+                       isPast ? "❌" : "🔍"}
                     </div>
                     <p className="text-xs font-heading text-foreground">
                       {date.getDate()}
