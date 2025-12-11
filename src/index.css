@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Comic+Neue:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Simpsons Yellow Theme */
+    --background: 48 100% 96%;
+    --foreground: 30 50% 15%;
+
+    --card: 48 100% 98%;
+    --card-foreground: 30 50% 15%;
+
+    --popover: 48 100% 98%;
+    --popover-foreground: 30 50% 15%;
+
+    /* Simpsons iconic yellow */
+    --primary: 51 99% 55%;
+    --primary-foreground: 30 50% 15%;
+
+    /* Springfield sky blue */
+    --secondary: 197 90% 65%;
+    --secondary-foreground: 210 80% 15%;
+
+    --muted: 45 30% 90%;
+    --muted-foreground: 30 20% 40%;
+
+    /* Donut pink accent */
+    --accent: 330 85% 70%;
+    --accent-foreground: 330 80% 15%;
+
+    /* Duff beer brown for destructive */
+    --destructive: 25 80% 45%;
+    --destructive-foreground: 48 100% 96%;
+
+    --border: 45 40% 80%;
+    --input: 45 40% 85%;
+    --ring: 51 99% 55%;
+
+    --radius: 1rem;
+
+    /* Custom Simpsons colors */
+    --simpsons-yellow: 51 99% 55%;
+    --simpsons-blue: 197 90% 65%;
+    --simpsons-pink: 330 85% 70%;
+    --simpsons-orange: 25 95% 55%;
+    --simpsons-green: 120 60% 40%;
+    --simpsons-brown: 30 50% 35%;
+
+    /* Gradients */
+    --gradient-sky: linear-gradient(180deg, hsl(197 90% 75%) 0%, hsl(197 90% 55%) 100%);
+    --gradient-sunset: linear-gradient(180deg, hsl(25 95% 65%) 0%, hsl(51 99% 55%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(48 100% 98%) 0%, hsl(48 80% 92%) 100%);
+
+    --sidebar-background: 48 100% 96%;
+    --sidebar-foreground: 30 50% 15%;
+    --sidebar-primary: 51 99% 55%;
+    --sidebar-primary-foreground: 30 50% 15%;
+    --sidebar-accent: 197 90% 65%;
+    --sidebar-accent-foreground: 210 80% 15%;
+    --sidebar-border: 45 40% 80%;
+    --sidebar-ring: 51 99% 55%;
+  }
+
+  .dark {
+    --background: 220 30% 10%;
+    --foreground: 48 100% 90%;
+
+    --card: 220 30% 15%;
+    --card-foreground: 48 100% 90%;
+
+    --popover: 220 30% 15%;
+    --popover-foreground: 48 100% 90%;
+
+    --primary: 51 99% 55%;
+    --primary-foreground: 30 50% 15%;
+
+    --secondary: 197 70% 35%;
+    --secondary-foreground: 197 90% 90%;
+
+    --muted: 220 20% 20%;
+    --muted-foreground: 45 20% 60%;
+
+    --accent: 330 70% 50%;
+    --accent-foreground: 330 85% 95%;
+
+    --destructive: 25 70% 40%;
+    --destructive-foreground: 48 100% 96%;
+
+    --border: 220 20% 25%;
+    --input: 220 20% 25%;
+    --ring: 51 99% 55%;
+
+    --sidebar-background: 220 30% 10%;
+    --sidebar-foreground: 48 100% 90%;
+    --sidebar-primary: 51 99% 55%;
+    --sidebar-primary-foreground: 30 50% 15%;
+    --sidebar-accent: 197 70% 35%;
+    --sidebar-accent-foreground: 197 90% 90%;
+    --sidebar-border: 220 20% 25%;
+    --sidebar-ring: 51 99% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold;
+  }
+}
+
+@layer utilities {
+  .text-shadow-sm {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  }
+  
+  .text-shadow-md {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-xl;
+  }
+
+  .simpsons-border {
+    @apply border-4 border-foreground/20 rounded-2xl;
+  }
+}
