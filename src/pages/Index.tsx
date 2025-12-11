@@ -41,10 +41,23 @@ export default function Index() {
       <PageTransition>
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-sky-gradient">
-        <div className="absolute inset-0 opacity-10">
+        {/* Light mode clouds */}
+        <div className="absolute inset-0 opacity-50 dark:opacity-0">
           <div className="absolute top-10 left-10 text-8xl animate-float">☁️</div>
           <div className="absolute top-20 right-20 text-6xl animate-float" style={{ animationDelay: "1s" }}>☁️</div>
           <div className="absolute bottom-20 left-1/4 text-7xl animate-float" style={{ animationDelay: "0.5s" }}>☁️</div>
+          <div className="absolute top-32 right-1/3 text-5xl animate-float" style={{ animationDelay: "1.5s" }}>☁️</div>
+        </div>
+        {/* Dark mode stars */}
+        <div className="absolute inset-0 opacity-0 dark:opacity-60">
+          <div className="absolute top-12 left-[10%] text-2xl animate-pulse">✨</div>
+          <div className="absolute top-8 left-[25%] text-xl animate-pulse" style={{ animationDelay: "0.3s" }}>⭐</div>
+          <div className="absolute top-20 left-[45%] text-lg animate-pulse" style={{ animationDelay: "0.6s" }}>✨</div>
+          <div className="absolute top-6 right-[30%] text-2xl animate-pulse" style={{ animationDelay: "0.9s" }}>⭐</div>
+          <div className="absolute top-16 right-[15%] text-xl animate-pulse" style={{ animationDelay: "1.2s" }}>✨</div>
+          <div className="absolute top-28 right-[40%] text-lg animate-pulse" style={{ animationDelay: "0.4s" }}>⭐</div>
+          <div className="absolute bottom-24 left-[20%] text-xl animate-pulse" style={{ animationDelay: "0.7s" }}>✨</div>
+          <div className="absolute bottom-32 right-[25%] text-2xl animate-pulse" style={{ animationDelay: "1s" }}>⭐</div>
         </div>
         
         <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
@@ -108,7 +121,7 @@ export default function Index() {
       </section>
 
       {/* Fun Facts Section */}
-      <section className="bg-primary/10 py-16">
+      <section className="bg-primary/10 dark:bg-secondary/10 py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-12 text-foreground">
             Did you know...? 🤔
@@ -156,13 +169,13 @@ export default function Index() {
       )}
 
       {/* Footer */}
-      <footer className="bg-foreground text-background py-8">
+      <footer className="bg-muted dark:bg-card border-t border-border py-8">
         <div className="container mx-auto px-4 text-center">
-          <p className="font-heading text-xl mb-2">🍩 Simpsonspedia</p>
-          <p className="text-sm opacity-70 font-body">
+          <p className="font-heading text-xl mb-2 text-foreground">🍩 Simpsonspedia</p>
+          <p className="text-sm text-muted-foreground font-body">
             Made with 💛 by The Simpsons fans
           </p>
-          <p className="text-xs opacity-50 mt-2 font-body">
+          <p className="text-xs text-muted-foreground/70 mt-2 font-body">
             The Simpsons™ and all related characters are property of 20th Century Fox
           </p>
         </div>
